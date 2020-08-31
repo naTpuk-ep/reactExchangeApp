@@ -1,0 +1,10 @@
+.operation{
+	display: flex;
+	justify-content: center;
+	span{
+		text-align: end;
+		input{
+			text-align: right;
+		}
+	}
+}
