@@ -11,8 +11,7 @@ export const Sidebar = () =>{
             </div>
             <div className = "sidebarContent">
                 <ul>
-                    {
-                        Object.keys(state.currency).map((item, i)=>{
+                    {Object.keys(state.currency).map((item, i)=>{
                             return(
                                 <li key = {item}>
                                     <p>
@@ -22,8 +21,7 @@ export const Sidebar = () =>{
                                     &nbsp; {state.currency[item].name}</p>
                                 </li>
                             )
-                        })
-                    }
+                        })}
                 </ul>
             </div>
         </div>

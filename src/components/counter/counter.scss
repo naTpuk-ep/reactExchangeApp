@@ -1,10 +1,21 @@
 .operation{
 	display: flex;
 	justify-content: center;
-	span{
-		text-align: end;
+		.input{
+			text-align: end;
+		}
+		.output{
+			text-align: start;
+			width: 30%;
+		}
 		input{
 			text-align: right;
+			appearance: none;
 		}
-	}
+		input[type=number]::-webkit-inner-spin-button, 
+		input[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0; 
+}
+	
 }

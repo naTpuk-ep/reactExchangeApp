@@ -33,27 +33,29 @@ class App extends React.Component{
         CHF: {name: 'Швейцарский Франк', flag: CHF, course: ''}
       },
       //calc
-      inputValue: 100,
+      inputValue: '100',
       currencyValue: 'USD',
 
     }
   }
 
   setBase = (event) => {
-    this.setState({base: event.target.value});   //????????????
-    console.log("value", event.target.value);
-    console.log("base", this.state.base);
-    this.calcHandler(this.state.currencyValue);
+      this.setState({base: event.target.value}, () => {
+        this.setCurrency();
+        this.calcHandler(this.state.currencyValue);
+    });
   }
 
   inputValueHandler = (event) => {
-    this.setState({inputValue: event.target.value});
-    this.calcHandler(this.state.currencyValue);
+    this.setState({inputValue: event.target.value}, () => {
+      this.calcHandler(this.state.currencyValue);
+    });
   }
 
   currencyValueHandler = (event) => {
-    this.setState({currencyValue: event.target.value});
-    this.calcHandler(event.target.value);
+    this.setState({currencyValue: event.target.value}, () => {
+      this.calcHandler(this.state.currencyValue);
+    });
   }
 
   calcHandler = async (value) => {
@@ -61,11 +63,11 @@ class App extends React.Component{
     await fetch(`https://api.exchangeratesapi.io/latest?base=${this.state.base}`)
       .then(res => res.json()).then(res => {
         result = res.rates[value]*this.state.inputValue;
-      })
+      });
       this.setState({result: Math.floor(result*1000)/1000});
   }
 
-  componentDidMount() {
+  setCurrency = () => {
     fetch(`https://api.exchangeratesapi.io/latest?base=${this.state.base}`)
       .then(res => res.json()).then(res => {
         const rateArr = Object.keys(this.state.currency);
@@ -77,8 +79,12 @@ class App extends React.Component{
             rate: res.rates,
             date: res.date
         })
-        this.calcHandler(this.state.currencyValue)
-      })
+      });
+  }
+
+  componentDidMount() {
+    this.setCurrency();
+    this.calcHandler(this.state.currencyValue);
   }
 
   render(){
@@ -88,7 +94,8 @@ class App extends React.Component{
         inputValueHandler: this.inputValueHandler,
         currencyValueHandler: this.currencyValueHandler,
         calcHandler: this.calcHandler,
-        setBase: this.setBase
+        setBase: this.setBase,
+        setCurrency: this.setCurrency
       }}>
         <Layout/>
       </RateContext.Provider>
@@ -96,4 +103,4 @@ class App extends React.Component{
   }
 }
 
-export default App
+export default App;

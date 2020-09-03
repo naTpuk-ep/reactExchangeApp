@@ -1,39 +1,35 @@
 import React, { useContext } from 'react'
 import './counter.scss'
 import { RateContext } from '../../context/RateContext'
-import { Result } from '../result/Result';
+import { BaseSelect } from '../BaseSelect';
 
 export const Counter = () => {
-	const {state, inputValueHandler, currencyValueHandler, setBase, calcHandler} = useContext(RateContext);
+	const {state, inputValueHandler, currencyValueHandler} = useContext(RateContext);
 
 	return (
 		<div className='calcHead'>
 			<div><h4>Хочу обменять:</h4></div>
 			<div className='operation'>
 				<span>
-					<input type = 'text' value = {state.inputValue} onChange = {inputValueHandler} />
+					<input type = 'text' value = {state.inputValue} onInput = {(e) =>
+						e.target.value = e.target.value.replace(/\D/, '')
+					} onChange = {inputValueHandler} />
 				</span>&nbsp;
-				<select defaultValue={state.base} onChange = {(e) => {
-					setBase(e);
-					// calcHandler(state.currencyValue);
-				}}>
+				<BaseSelect change = {(e) => {
+					const outSelect = document.querySelectorAll('select');
+					if (outSelect[outSelect.length-1].value === e.target.value){
+						let target = e.target.value;
+						state.currencyValue = Object.keys(state.currency).find(item => item !== target);
+					};
+					}}/>&nbsp;=&nbsp;
+				<select onChange = {currencyValueHandler}>
 					{Object.keys(state.currency).map(item => {
-						return(
+						return(item !== state.base ?
 							<option key = {item}>{item}</option>
-						)
-					})}
-				</select>&nbsp;=
-				<select onChange = {(e) => {
-					currencyValueHandler(e);
-					// calcHandler(state.currencyValue);
-				}}>
-					{Object.keys(state.currency).map(item => {
-						return(
-							<option key = {item}>{item}</option>
-						)
+						: null);
 					})}
 				</select>&nbsp;
-				<Result/>
+				<span className='output'>&nbsp;{state.result}&nbsp;</span>
 			</div>
 		</div>
 	)
