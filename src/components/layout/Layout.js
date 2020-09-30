@@ -18,12 +18,15 @@ const Layout = () => {
 			<Header/>
 			<div className = "content">
 				<div className = "routes">
-					<Switch>
-						<Route path = {path.home} exact component={Home} />
-						<Route path = {path.calc} exact component={Calc} />
-						<Route path = {path.sample} exact component={Sample} />
-						<Route path = {path.info} exact component={Info} />
-					</Switch>
+					{state.auth?
+						<Switch>
+							<Route path = {path.home} exact component={Home} />
+							<Route path = {path.calc} exact component={Calc} />
+							<Route path = {path.sample} exact component={Sample} />
+							<Route path = {path.info} exact component={Info} />
+						</Switch>					
+						:<Route path = {path.home} component={Home} />
+					}
 				</div>
 				<Sidebar/>
 			</div>
