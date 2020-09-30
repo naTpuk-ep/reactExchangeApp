@@ -22,9 +22,9 @@ class App extends React.Component{
       formControls: {
         email: {
           value: '',
-          type: 'Email',
-          label: 'Email',
-          errorMessage: 'Введите корректный Email',
+          type: 'email',
+          label: 'email',
+          errorMessage: 'введите корректный',
           valid: false,
           touched: false,
           validation: {
@@ -36,7 +36,7 @@ class App extends React.Component{
           value: '',
           type: 'password',
           label: 'password',
-          errorMessage: 'Введите корректный пароль',
+          errorMessage: 'минимум 6 символов',
           valid: false,
           touched: false,
           validation: {
@@ -86,24 +86,28 @@ class App extends React.Component{
       returnSecureToken: true
     }
     try{
-      const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDHd9v6hI9pt_Ktk5KYeP605xa7PkHz5Iw', authData)
-      if(response.data.idToken){
-        const formControls = {...this.state.formControls};
-        formControls.email.value = '';
-        formControls.password.value = '';
-        this.setState({
-          auth: true,
-          error: '',
-          formControls
-        });
-        this.modalShowHandler();
-      }
+      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDHd9v6hI9pt_Ktk5KYeP605xa7PkHz5Iw', authData)
+        .then(response => {
+          if(response.data.idToken){
+            const formControls = {...this.state.formControls};
+            formControls.email.value = '';
+            formControls.password.value = '';
+            this.setState({
+              auth: true,
+              error: '',
+              formControls
+            });
+            this.modalShowHandler();
+          }
+        })
+        .catch(e => {
+          this.setState({error: 'Неверный email или пароль'})
+        })
     }catch(e){
-      console.log(e);
-      this.setState({error: 'Неверный email или пароль'})
+      this.setState({error: 'Ошибка'})
     }
   }
-
+  
   registerHandler = async () => {
     const authData = {
       email: this.state.formControls.email.value,
@@ -111,21 +115,25 @@ class App extends React.Component{
       returnSecureToken: true
     }
     try{
-      const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDHd9v6hI9pt_Ktk5KYeP605xa7PkHz5Iw', authData)
-      if(response.data.idToken){
-        const formControls = {...this.state.formControls};
-        formControls.email.value = '';
-        formControls.password.value = '';
-        this.setState({
-          auth: true,
-          error: '',
-          formControls
-        });
-        this.modalShowHandler();
-      }
+      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDHd9v6hI9pt_Ktk5KYeP605xa7PkHz5Iw', authData)
+        .then(response => {
+          if(response.data.idToken){
+            const formControls = {...this.state.formControls};
+            formControls.email.value = '';
+            formControls.password.value = '';
+            this.setState({
+              auth: true,
+              error: '',
+              formControls
+            });
+            this.modalShowHandler();
+          }
+        })
+        .catch(e => {
+          this.setState({error: 'Ошибка сервера'})
+        })
     }catch(e){
-      console.log(e);
-      this.setState({error: 'ошибка'})
+      this.setState({error: 'Ошибка'})
     }
   }
 
@@ -159,14 +167,14 @@ class App extends React.Component{
     const formControls = {...this.state.formControls};
     const control = {...formControls[controlName]};
     control.value = event.target.value;
-    control.touched = true;
+    control.value === '' ? control.touched = false : control.touched = true;
     control.valid = this.validateControl(control.value, control.validation);
     formControls[controlName] = control;
     let isFormValid = true;
     Object.keys(formControls).forEach(name => {
       isFormValid = formControls[name].valid && isFormValid
     })
-    this.setState({formControls, isFormValid});
+    this.setState({formControls, isFormValid, error: ''});
   }
 
   renderInputs = () => {
@@ -198,7 +206,7 @@ class App extends React.Component{
   dataWrite = async () => {
     await fetch(`https://api.exchangeratesapi.io/${this.state.sample.date}?base=${this.state.sample.base}`)
       .then(res => res.json()).then(res => {
-        this.setState({sample: {...this.state.sample, course: res.rates[this.state.sample.base2]}})
+        this.setState({sample: {...this.state.sample, course: Math.round(res.rates[this.state.sample.base2]*1000)/1000}})
       })
     await axios.post('https://rateapp-7d227.firebaseio.com/sample.json', this.state.sample)
       .then (res => {

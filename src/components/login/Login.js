@@ -8,12 +8,12 @@ export const Login = () =>{
 	const {renderInputs, state, loginHandler} = useContext(RateContext);
 	return(
 		<Fragment>
-			<div className = 'modalForm'>
+			<form className = 'modalForm'>
 				{renderInputs()}
-			</div>
-			<div className = 'modalBtn'>
-				<Button text = 'Войти' disabled = {!state.isFormValid} click = {loginHandler}/>
-			</div>
+				<div className = 'modalBtn'>
+					<Button text = 'Войти' disabled = {!state.isFormValid} click = {loginHandler}/>
+				</div>
+			</form>
 		</Fragment>
 	)
 }

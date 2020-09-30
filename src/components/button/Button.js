@@ -3,13 +3,14 @@ import './button.scss';
 
 export const Button = (props) => {
 	return(
-		<button
+		<input
+			value = {props.text}
+			type = 'submit'
 			className = 'btn'
 			disabled = {props.disabled}
-			onClick = {() => 
-				props.click ? props.click(props.arg || '') : undefined 
-		}>
-			{props.text}
-		</button>
+			onClick = {(e) => {
+				e.preventDefault();
+				return props.click ? props.click(props.arg || '') : undefined 
+			}}/>
 	)
 }

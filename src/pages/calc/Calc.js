@@ -4,7 +4,7 @@ import { Counter } from '../../components/counter/Counter'
 
 export const Calc = () => {
 	return (
-		<div className='calc'>
+		<div className='calculator'>
 			<div className='calcContainer'>
 				<Counter/>
 			</div>

@@ -32,8 +32,8 @@ export const Modal = () =>{
 				</div>
 				<hr />
 			</Fragment>
-					<h2 style = {{color: 'red'}}>{state.error}</h2>
 			{value==='register'?<Register/>:<Login/>}
+			<h3 style = {{color: 'red'}}>{state.error}</h3>
 		</div>
 	)
 }

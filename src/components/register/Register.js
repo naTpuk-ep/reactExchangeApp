@@ -7,12 +7,12 @@ export const Register = () =>{
 	const {renderInputs, state, registerHandler} = useContext(RateContext);
 	return(
 		<Fragment>
-			<div className = 'modalForm'>
+			<form className = 'modalForm'>
 				{renderInputs()}
-			</div>
-			<div className = 'modalBtn'>
-				<Button text = 'Зарегестрироваться' disabled = {!state.isFormValid} click = {registerHandler}/>
-			</div>
+				<div className = 'modalBtn'>
+					<Button text = 'Зарегестрироваться' disabled = {!state.isFormValid} click = {registerHandler}/>
+				</div>
+			</form>
 		</Fragment>
 	)
 }

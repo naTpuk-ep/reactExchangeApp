@@ -12,13 +12,14 @@ export const Input = (props) =>{
 
 	return(
 		<div className = {cls.join(' ')}>
-			<label htmlFor = {htmlFor}>{props.label}</label>
-			<input type = {inputType}
+			<label htmlFor = {htmlFor}>{props.label}&nbsp;{isInvalid(props)?<span>{props.errorMessage || "Введите корректное значение"}</span>:null}</label>
+			<input 	required
+							name = {inputType}
+							type = {inputType}
 							id = {htmlFor}
 							value = {props.value}
 							onChange = {props.onChange}
 			/>
-			{isInvalid(props)?<span>{props.errorMessage || "Введите корректное значение"}</span>:null}
 		</div>
 	)
 }
