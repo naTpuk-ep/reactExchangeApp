@@ -73,7 +73,7 @@ class App extends React.Component{
         date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
         course: ''
       },
-      sampleList: '',
+      sampleList: {},
       showModal: false,
       isFormValid: false
     }
@@ -86,7 +86,7 @@ class App extends React.Component{
       returnSecureToken: true
     }
     try{
-      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDHd9v6hI9pt_Ktk5KYeP605xa7PkHz5Iw', authData)
+      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD3lWCDTjDF7O_MZ5jaf1m39mGMPm15SJY', authData)
         .then(response => {
           if(response.data.idToken){
             const formControls = {...this.state.formControls};
@@ -115,7 +115,7 @@ class App extends React.Component{
       returnSecureToken: true
     }
     try{
-      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDHd9v6hI9pt_Ktk5KYeP605xa7PkHz5Iw', authData)
+      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD3lWCDTjDF7O_MZ5jaf1m39mGMPm15SJY', authData)
         .then(response => {
           if(response.data.idToken){
             const formControls = {...this.state.formControls};
@@ -197,24 +197,26 @@ class App extends React.Component{
   }
 
   sampleRemove = async (id) => {
-    await axios.delete(`https://rateapp-7d227.firebaseio.com/sample/${id}.json`);
-    let sampleList = {...this.state.sampleList};
-    delete sampleList[id];
-    this.setState({sampleList});
+    await axios.delete(`https://exchangeapp-8b4d5.firebaseio.com//sample/${id}.json`)
+      .then(() => {
+        let sampleList = {...this.state.sampleList};
+        delete sampleList[id];
+        this.setState({sampleList});
+      })
   }
   
   dataWrite = async () => {
     await fetch(`https://api.exchangeratesapi.io/${this.state.sample.date}?base=${this.state.sample.base}`)
-      .then(res => res.json()).then(res => {
+      .then(res => res.json())
+      .then(res => {
         this.setState({sample: {...this.state.sample, course: Math.round(res.rates[this.state.sample.base2]*1000)/1000}})
       })
-    await axios.post('https://rateapp-7d227.firebaseio.com/sample.json', this.state.sample)
+    await axios.post('https://exchangeapp-8b4d5.firebaseio.com//sample.json', this.state.sample)
       .then (res => {
-        return('')
-      })
-    await axios('https://rateapp-7d227.firebaseio.com/sample.json')
-      .then (res => {
-        this.setState({sampleList: res.data});
+        let id = res.data.name;
+        let sampleList = {...this.state.sampleList};
+        sampleList[id] = this.state.sample;
+        this.setState({sampleList})
       })
   }
 
@@ -276,7 +278,7 @@ class App extends React.Component{
   componentDidMount() {
     this.setCurrency();
     this.calcHandler(this.state.currencyValue);
-    axios('https://rateapp-7d227.firebaseio.com/sample.json')
+    axios('https://exchangeapp-8b4d5.firebaseio.com//sample.json')
       .then (res => {
         if(res.data) this.setState({sampleList: res.data});
       })
