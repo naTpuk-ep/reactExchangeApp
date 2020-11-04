@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.f32aadc4.chunk.css",
-    "main.js": "/static/js/main.ecfbbf9d.chunk.js",
-    "main.js.map": "/static/js/main.ecfbbf9d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.92ee656d.js",
-    "runtime-main.js.map": "/static/js/runtime-main.92ee656d.js.map",
-    "static/js/2.de0c1385.chunk.js": "/static/js/2.de0c1385.chunk.js",
-    "static/js/2.de0c1385.chunk.js.map": "/static/js/2.de0c1385.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.7f06607e5496a965dfa45ddaa5fc7e59.js": "/precache-manifest.7f06607e5496a965dfa45ddaa5fc7e59.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.f32aadc4.chunk.css.map": "/static/css/main.f32aadc4.chunk.css.map",
-    "static/js/2.de0c1385.chunk.js.LICENSE.txt": "/static/js/2.de0c1385.chunk.js.LICENSE.txt",
-    "static/media/CNY.png": "/static/media/CNY.dc8dc7aa.png",
-    "static/media/EUR.png": "/static/media/EUR.e1c9768d.png",
-    "static/media/GBP.png": "/static/media/GBP.38c13285.png",
-    "static/media/JPY.png": "/static/media/JPY.9987aabc.png",
-    "static/media/RUB.png": "/static/media/RUB.0c79b82e.png",
-    "static/media/USD.png": "/static/media/USD.ff97e132.png"
+    "main.css": "/reactExchangeApp/static/css/main.f32aadc4.chunk.css",
+    "main.js": "/reactExchangeApp/static/js/main.872ab2dd.chunk.js",
+    "main.js.map": "/reactExchangeApp/static/js/main.872ab2dd.chunk.js.map",
+    "runtime-main.js": "/reactExchangeApp/static/js/runtime-main.63498145.js",
+    "runtime-main.js.map": "/reactExchangeApp/static/js/runtime-main.63498145.js.map",
+    "static/js/2.de0c1385.chunk.js": "/reactExchangeApp/static/js/2.de0c1385.chunk.js",
+    "static/js/2.de0c1385.chunk.js.map": "/reactExchangeApp/static/js/2.de0c1385.chunk.js.map",
+    "index.html": "/reactExchangeApp/index.html",
+    "precache-manifest.c1a49d7a27e55dd0f93f4d702eff1219.js": "/reactExchangeApp/precache-manifest.c1a49d7a27e55dd0f93f4d702eff1219.js",
+    "service-worker.js": "/reactExchangeApp/service-worker.js",
+    "static/css/main.f32aadc4.chunk.css.map": "/reactExchangeApp/static/css/main.f32aadc4.chunk.css.map",
+    "static/js/2.de0c1385.chunk.js.LICENSE.txt": "/reactExchangeApp/static/js/2.de0c1385.chunk.js.LICENSE.txt",
+    "static/media/CNY.png": "/reactExchangeApp/static/media/CNY.dc8dc7aa.png",
+    "static/media/EUR.png": "/reactExchangeApp/static/media/EUR.e1c9768d.png",
+    "static/media/GBP.png": "/reactExchangeApp/static/media/GBP.38c13285.png",
+    "static/media/JPY.png": "/reactExchangeApp/static/media/JPY.9987aabc.png",
+    "static/media/RUB.png": "/reactExchangeApp/static/media/RUB.0c79b82e.png",
+    "static/media/USD.png": "/reactExchangeApp/static/media/USD.ff97e132.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.92ee656d.js",
+    "static/js/runtime-main.63498145.js",
     "static/js/2.de0c1385.chunk.js",
     "static/css/main.f32aadc4.chunk.css",
-    "static/js/main.ecfbbf9d.chunk.js"
+    "static/js/main.872ab2dd.chunk.js"
   ]
 }
