@@ -9,6 +9,7 @@ import {Calc} from '../../pages/calc/Calc'
 import {Sample} from '../../pages/sample/Sample'
 import {Info} from '../../pages/info/Info'
 import { RateContext } from '../../context/RateContext';
+import {UnAuthMessage} from'../unAuthMessage/UnAuthMessage.js'
 
 const Layout = () => {
 	const {state} = useContext(RateContext);
@@ -18,15 +19,14 @@ const Layout = () => {
 			<Header/>
 			<div className = "content">
 				<div className = "routes">
-					{state.auth?
+					{/* {state.auth? */}
 						<Switch>
 							<Route path = {path.home} exact component={Home} />
-							<Route path = {path.calc} exact component={Calc} />
-							<Route path = {path.sample} exact component={Sample} />
-							<Route path = {path.info} exact component={Info} />
-						</Switch>					
-						:<Route path = {path.home} component={Home} />
-					}
+							<Route path = {path.calc} exact component={state.auth ? Calc : UnAuthMessage} />
+							<Route path = {path.sample} exact component={state.auth ? Sample : UnAuthMessage} />
+							<Route path = {path.info} exact component={state.auth ? Info : UnAuthMessage} />
+						</Switch>
+					{/* } */}
 				</div>
 				<Sidebar/>
 			</div>

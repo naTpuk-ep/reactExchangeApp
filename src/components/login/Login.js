@@ -1,6 +1,5 @@
 import React, {Fragment, useContext} from 'react'
 import './login.scss'
-// import { Input } from '../input/Input';
 import { RateContext } from '../../context/RateContext';
 import { Button } from '../button/Button';
 
