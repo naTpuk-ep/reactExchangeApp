@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/reactExchangeApp/static/css/main.f32aadc4.chunk.css",
-    "main.js": "/reactExchangeApp/static/js/main.872ab2dd.chunk.js",
-    "main.js.map": "/reactExchangeApp/static/js/main.872ab2dd.chunk.js.map",
+    "main.css": "/reactExchangeApp/static/css/main.15aabdf9.chunk.css",
+    "main.js": "/reactExchangeApp/static/js/main.71c8c10c.chunk.js",
+    "main.js.map": "/reactExchangeApp/static/js/main.71c8c10c.chunk.js.map",
     "runtime-main.js": "/reactExchangeApp/static/js/runtime-main.63498145.js",
     "runtime-main.js.map": "/reactExchangeApp/static/js/runtime-main.63498145.js.map",
-    "static/js/2.de0c1385.chunk.js": "/reactExchangeApp/static/js/2.de0c1385.chunk.js",
-    "static/js/2.de0c1385.chunk.js.map": "/reactExchangeApp/static/js/2.de0c1385.chunk.js.map",
+    "static/js/2.a1eb6475.chunk.js": "/reactExchangeApp/static/js/2.a1eb6475.chunk.js",
+    "static/js/2.a1eb6475.chunk.js.map": "/reactExchangeApp/static/js/2.a1eb6475.chunk.js.map",
     "index.html": "/reactExchangeApp/index.html",
-    "precache-manifest.c1a49d7a27e55dd0f93f4d702eff1219.js": "/reactExchangeApp/precache-manifest.c1a49d7a27e55dd0f93f4d702eff1219.js",
+    "precache-manifest.d6fbd6afadf0fdbb2183857029acf735.js": "/reactExchangeApp/precache-manifest.d6fbd6afadf0fdbb2183857029acf735.js",
     "service-worker.js": "/reactExchangeApp/service-worker.js",
-    "static/css/main.f32aadc4.chunk.css.map": "/reactExchangeApp/static/css/main.f32aadc4.chunk.css.map",
-    "static/js/2.de0c1385.chunk.js.LICENSE.txt": "/reactExchangeApp/static/js/2.de0c1385.chunk.js.LICENSE.txt",
+    "static/css/main.15aabdf9.chunk.css.map": "/reactExchangeApp/static/css/main.15aabdf9.chunk.css.map",
+    "static/js/2.a1eb6475.chunk.js.LICENSE.txt": "/reactExchangeApp/static/js/2.a1eb6475.chunk.js.LICENSE.txt",
     "static/media/CNY.png": "/reactExchangeApp/static/media/CNY.dc8dc7aa.png",
     "static/media/EUR.png": "/reactExchangeApp/static/media/EUR.e1c9768d.png",
     "static/media/GBP.png": "/reactExchangeApp/static/media/GBP.38c13285.png",
@@ -21,8 +21,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.63498145.js",
-    "static/js/2.de0c1385.chunk.js",
-    "static/css/main.f32aadc4.chunk.css",
-    "static/js/main.872ab2dd.chunk.js"
+    "static/js/2.a1eb6475.chunk.js",
+    "static/css/main.15aabdf9.chunk.css",
+    "static/js/main.71c8c10c.chunk.js"
   ]
 }
