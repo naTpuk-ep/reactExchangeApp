@@ -9,7 +9,7 @@ export const Modal = () =>{
 	const cls = ['modal'];
 	const {state, modalShowHandler} = useContext(RateContext);
 	const [value, setValue] = useState('login');
-	const links = [{name: 'Вход', id: 'login'}, {name: 'Регистрация', id: 'register'}];
+	const links = [{name: 'Log in', id: 'login'}, {name: 'Sign up', id: 'register'}];
 	const windowHandler = (id) => {
 		setValue(id);
 	}

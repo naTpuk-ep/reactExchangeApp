@@ -19,14 +19,12 @@ const Layout = () => {
 			<Header/>
 			<div className = "content">
 				<div className = "routes">
-					{/* {state.auth? */}
-						<Switch>
-							<Route path = {path.home} exact component={Home} />
-							<Route path = {path.calc} exact component={state.auth ? Calc : UnAuthMessage} />
-							<Route path = {path.sample} exact component={state.auth ? Sample : UnAuthMessage} />
-							<Route path = {path.info} exact component={state.auth ? Info : UnAuthMessage} />
-						</Switch>
-					{/* } */}
+					<Switch>
+						<Route path = {path.home} exact component={Home} />
+						<Route path = {path.calc} exact component={state.auth ? Calc : UnAuthMessage} />
+						<Route path = {path.sample} exact component={state.auth ? Sample : UnAuthMessage} />
+						<Route path = {path.info} exact component={state.auth ? Info : UnAuthMessage} />
+					</Switch>
 				</div>
 				<Sidebar/>
 			</div>

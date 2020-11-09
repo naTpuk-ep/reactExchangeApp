@@ -10,9 +10,9 @@ export const Exchange = () =>{
 		<div className = "exchange">
 			<div className = "exchangeContainer">
 				<div className = "exchangeContent">
-					<div> <p>Базовая валюта: &nbsp;<BaseSelect change = {(event) => {
+					<div> <p>Base currency: &nbsp;<BaseSelect change = {(event) => {
 						setBase(event);
-					}}/>&nbsp;&nbsp;Дата:&nbsp;{state.date}</p></div>
+					}}/>&nbsp;&nbsp;Date:&nbsp;{state.date}</p></div>
 					<ul>
 						{Object.keys(currency).map((item)=>{
 								return( `${item}` !== state.base ?

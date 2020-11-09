@@ -9,7 +9,7 @@ export const Navbar = () =>{
 	return(
 		<nav>
 			<ul>
-				<li><NavLink to = {path.home}>Главная</NavLink></li>
+				<li><NavLink to = {path.home}>Home</NavLink></li>
 				<li><NavLink onClick = {(e) => {
 					try{
 						const outSelect = document.querySelectorAll('select');
@@ -19,9 +19,9 @@ export const Navbar = () =>{
 						};
 						calcHandler(state.currencyValue);
 					}catch(e){}
-				}} to = {path.calc}>Калькулятор</NavLink></li>
-				<li><NavLink to = {path.sample}>Выборки</NavLink></li>
-				<li><NavLink to = {path.info}>Информация</NavLink></li>
+				}} to = {path.calc}>Calculator</NavLink></li>
+				<li><NavLink to = {path.sample}>Samples</NavLink></li>
+				<li><NavLink to = {path.info}>Info</NavLink></li>
 			</ul>
 		</nav>
 	)

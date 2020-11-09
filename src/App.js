@@ -12,6 +12,8 @@ import JPY from './image/JPY.png';
 import RUB from './image/RUB.png';
 import USD from './image/USD.png';
 import { Input } from './components/input/Input';
+import firebase from 'firebase/app';
+import 'firebase/auth'
 
 class App extends React.Component{
   constructor(){
@@ -24,7 +26,7 @@ class App extends React.Component{
           value: '',
           type: 'email',
           label: 'email',
-          errorMessage: 'введите корректный',
+          errorMessage: 'enter correct',
           valid: false,
           touched: false,
           validation: {
@@ -36,7 +38,7 @@ class App extends React.Component{
           value: '',
           type: 'password',
           label: 'password',
-          errorMessage: 'минимум 6 символов',
+          errorMessage: 'minimum 6 characters',
           valid: false,
           touched: false,
           validation: {
@@ -55,13 +57,13 @@ class App extends React.Component{
       rate: '',
       date: '',
       currency: { 
-        USD: {name: 'Доллар США', flag: USD, course: ''},
-        CNY: {name: 'Китайский Юань', flag: CNY, course: ''},
-        EUR: {name: 'Евро', flag: EUR, course: ''},
-        GBP: {name: 'Фунт Стерлингов', flag: GBP, course: ''},
-        JPY: {name: 'Японская Йена', flag: JPY, course: ''},
-        RUB: {name: 'Российский Рубль', flag: RUB, course: ''},
-        CHF: {name: 'Швейцарский Франк', flag: CHF, course: ''}
+        USD: {flag: USD, course: ''},
+        CNY: {flag: CNY, course: ''},
+        EUR: {flag: EUR, course: ''},
+        GBP: {flag: GBP, course: ''},
+        JPY: {flag: JPY, course: ''},
+        RUB: {flag: RUB, course: ''},
+        CHF: {flag: CHF, course: ''}
       },
       //calc
       inputValue: '100',
@@ -85,56 +87,72 @@ class App extends React.Component{
       password: this.state.formControls.password.value,
       returnSecureToken: true
     }
-    try{
-      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD3lWCDTjDF7O_MZ5jaf1m39mGMPm15SJY', authData)
-        .then(response => {
-          if(response.data.idToken){
-            const formControls = {...this.state.formControls};
-            formControls.email.value = '';
-            formControls.password.value = '';
-            this.setState({
-              auth: true,
-              error: '',
-              formControls
-            });
-            this.modalShowHandler();
-          }
-        })
-        .catch(e => {
-          this.setState({error: 'Неверный email или пароль'})
-        })
-    }catch(e){
-      this.setState({error: 'Ошибка'})
-    }
+    // try{
+    //   await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD3lWCDTjDF7O_MZ5jaf1m39mGMPm15SJY', authData)
+    //     .then(response => {
+    //       if(response.data.idToken){
+    //         const formControls = {...this.state.formControls};
+    //         formControls.email.value = '';
+    //         formControls.password.value = '';
+    //         this.setState({
+    //           auth: true,
+    //           error: '',
+    //           formControls
+    //         });
+    //         this.modalShowHandler();
+    //       }
+    //     })
+    //     .catch(e => {
+    //       this.setState({error: 'invalid email or password'})
+    //     })
+    // }catch(e){
+    //   this.setState({error: 'Error'})
+    // }
   }
   
   registerHandler = async () => {
-    const authData = {
-      email: this.state.formControls.email.value,
-      password: this.state.formControls.password.value,
-      returnSecureToken: true
-    }
-    try{
-      await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD3lWCDTjDF7O_MZ5jaf1m39mGMPm15SJY', authData)
-        .then(response => {
-          if(response.data.idToken){
-            const formControls = {...this.state.formControls};
-            formControls.email.value = '';
-            formControls.password.value = '';
-            this.setState({
-              auth: true,
-              error: '',
-              formControls
-            });
-            this.modalShowHandler();
-          }
-        })
-        .catch(e => {
-          this.setState({error: 'Ошибка сервера'})
-        })
-    }catch(e){
-      this.setState({error: 'Ошибка'})
-    }
+    let email = this.state.formControls.email.value;
+    let password = this.state.formControls.password.value;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(response => {
+        if(response.data.idToken){
+          const formControls = {...this.state.formControls};
+          formControls.email.value = '';
+          formControls.password.value = '';
+          this.setState({
+            auth: true,
+            error: '',
+            formControls
+          });
+          this.modalShowHandler();
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    // try{
+    //   await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD3lWCDTjDF7O_MZ5jaf1m39mGMPm15SJY', authData)
+    //     .then(response => {
+    //       if(response.data.idToken){
+    //         const formControls = {...this.state.formControls};
+    //         formControls.email.value = '';
+    //         formControls.password.value = '';
+    //         this.setState({
+    //           auth: true,
+    //           error: '',
+    //           formControls
+    //         });
+    //         this.modalShowHandler();
+    //       }
+    //     })
+    //     .catch(e => {
+    //       this.setState({error: 'Server error'})
+    //     })
+    // }catch(e){
+    //   this.setState({error: 'Error'})
+    // }
   }
 
   modalShowHandler = () => {
@@ -302,7 +320,7 @@ class App extends React.Component{
         modalShowHandler: this.modalShowHandler,
         loginHandler: this.loginHandler,
         registerHandler: this.registerHandler
-        }}>
+      }}>
         <Layout/>
         <Dark/>
         <Modal/>
